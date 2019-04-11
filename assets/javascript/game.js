@@ -1,26 +1,58 @@
-// make list of all possible selections for computer to choose
+// dogs is object with each possible dog choice and victory video inside
 
-var countries = ["BRAZIL", "USA", "ENGLAND","CROATIA","GHANA"];
+var dogs = [
+    {
+        name:"SHIBA", 
+        color: "blue",
+        video: "<iframe width='560' height='315' src='https://www.youtube.com/embed/hhyS-E8GQbo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"HUSKY",
+        color: "red",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/lxm_2s--q3A' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+
+];
 
 //computer selects random number which choses random choice of country from list
-var turns = 8;
+var turns = 3;
 var wins = 0;
 var losses = 0;
+var dogNames = [];
+
+function listDogs(names) {
+    
+    for (let i=0; i<names.length; i++){
+        dogNames.push(names[i].name);
+    }
+    console.log(dogNames);
+}
+
+listDogs(dogs);
+
+//selects initial random word to be guessed
+var randomNumber = Math.floor(Math.random()*dogNames.length);
+
+//make it a function here so you get the initial random word choice!!!!!
 
 
 
-var randomNumber = Math.floor(Math.random()*countries.length);
-wordChoice = countries[randomNumber];
+
+
+var wordChoice = dogNames[randomNumber];
 
 console.log(wordChoice);
+console.log(dogs[randomNumber].video);
 
 //computer counts letters in the string and displays blanks for every letter in word
 
 var blankWord = [];
 
-for(var i=0;i<wordChoice.length; i++){
-blankWord.push("_")
-};
+for(var j=0;j<wordChoice.length; j++){
+    blankWord.push(" _ ")
+    };
+
+document.getElementById('blankWord').textContent = blankWord.join(""); 
 //want to display it without commas
 console.log(blankWord);
 
@@ -32,14 +64,11 @@ console.log(wordLetters);
 
 var incorrectGuesses = [];
 var correctLetterTally = 0;
+var userGuess;
 
 //player choses letter 
-
-
-
-
     document.onkeyup = function(){
-        var userGuess = String.fromCharCode(event.keyCode).
+        userGuess = String.fromCharCode(event.keyCode).
         toUpperCase();
 
         console.log(userGuess);
@@ -54,7 +83,7 @@ var correctLetterTally = 0;
                 //increase correctLetterrTally by 1 for each correct letter
                 correctLetterTally++;
                 console.log(blankWord);
-                document.querySelector('#blankWord').innerHTML = blankWord;   
+                document.getElementById('blankWord').textContent = blankWord.join("");    
             }
             
         }
@@ -73,20 +102,21 @@ var correctLetterTally = 0;
             document.querySelector('#wins').innerHTML = wins;
 
             //insert changing picture and such here!!!!!!
+            document.getElementById('video').textContent = dogs[randomNumber].video; 
 
                 //reset game
-                randomNumber = Math.floor(Math.random()*countries.length);
-                wordChoice = countries[randomNumber];
+                randomNumber = Math.floor(Math.random()*dogNames.length);
+                wordChoice = dogNames[randomNumber];
                     console.log(wordChoice);
 
                 wordLetters = wordChoice.split('');
 
                 blankWord.length = 0;
 
-                    for(var i=0;i<wordChoice.length; i++){
-                    blankWord.push("_")
+                    for(var j=0;j<wordChoice.length; j++){
+                    blankWord.push(" _ ")
                     };
-
+                document.getElementById('blankWord').textContent = blankWord.join(""); 
                 incorrectGuesses.length = 0;
 
                 correctLetterTally = 0;
@@ -99,8 +129,8 @@ var correctLetterTally = 0;
             losses++;
             document.querySelector('#losses').innerHTML = losses;
                 //reset game
-                randomNumber = Math.floor(Math.random()*countries.length);
-                wordChoice = countries[randomNumber];
+                randomNumber = Math.floor(Math.random()*dogs.length);
+                wordChoice = dogNames[randomNumber];
                     console.log(wordChoice);
 
                 wordLetters = wordChoice.split('');
@@ -108,13 +138,14 @@ var correctLetterTally = 0;
                 blankWord.length = 0;
 
                     for(var i=0;i<wordChoice.length; i++){
-                    blankWord.push("_")
+                    blankWord.push(" _ ")
                     };
 
+                document.getElementById('blankWord').textContent = blankWord.join(""); 
                 incorrectGuesses.length = 0;
 
                 correctLetterTally = 0;
-                turns=8;
+                turns=3;
                 //insert sad image for losing
         }
         
@@ -126,9 +157,10 @@ var correctLetterTally = 0;
 
 
 
-//Create object for each countries victory. include picture of flag + national anthem.
+//Create object for each dogs victory. include picture of flag + national anthem.
 
-var victoryArray = 
+// https://teamtreehouse.com/library/create-an-array-of-objects
 
 
+// variable = arrayname.join('');
 
