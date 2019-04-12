@@ -4,14 +4,49 @@ var dogs = [
     {
         name:"SHIBA", 
         color: "blue",
-        video: "<iframe width='560' height='315' src='https://www.youtube.com/embed/hhyS-E8GQbo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+        video: "<iframe width='560' height='315' src='https://www.youtube.com/embed/hhyS-E8GQbo?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
     {
         name:"HUSKY",
         color: "red",
-        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/lxm_2s--q3A' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/lxm_2s--q3A?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
-
+    {
+        name:"LABRADOR",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/BOK-2G9GLfY?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"BULLDOG",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/VD2GUDpwuvM?start=18?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"CHIHWAHUA",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/jjOc_8Kp6YI?start=9?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"DALMATION",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/VOH3esRT3GY?start=45?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"POODLE",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/dzPVHGE_RMQ?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"BEAGLE",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/Wbcy-luvFJM?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"DACHSHUND",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/NfXwt8Wqgvk?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"PUG",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/l3S7zyzg4P8?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
+    {
+        name:"POMERANIAN",
+        video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/SeEcYAgQZlc?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+    },
 ];
 
 //computer selects random number which choses random choice of country from list
@@ -102,7 +137,7 @@ var userGuess;
             document.querySelector('#wins').innerHTML = wins;
 
             //insert changing picture and such here!!!!!!
-            document.getElementById('video').textContent = dogs[randomNumber].video; 
+            document.getElementById('video').innerHTML = dogs[randomNumber].video; 
 
                 //reset game
                 randomNumber = Math.floor(Math.random()*dogNames.length);
