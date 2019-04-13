@@ -55,6 +55,10 @@ var wins = 0;
 var losses = 0;
 var dogNames = [];
 
+document.querySelector('#wins').innerHTML = wins;
+document.querySelector('#losses').innerHTML = losses;
+document.querySelector('#turns').innerHTML = turns;
+
 function listDogs(names) {
     
     for (let i=0; i<names.length; i++){
@@ -177,8 +181,10 @@ var userGuess;
                     };
 
                 document.getElementById('blankWord').textContent = blankWord.join(""); 
+                
                 incorrectGuesses.length = 0;
-
+                document.querySelector('#incorrectGuesses').innerHTML = incorrectGuesses;
+                
                 correctLetterTally = 0;
                 turns=3;
                 //insert sad image for losing
@@ -198,4 +204,5 @@ var userGuess;
 
 
 // variable = arrayname.join('');
+
 

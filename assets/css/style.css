@@ -1,3 +1,21 @@
+h1 {
+    font-family: 'Fjalla One', sans-serif;
+}
+div{
+    font-family: 'Lato', sans-serif;
+}
 
-/* font-family: 'Fjalla One', sans-serif;
-font-family: 'Lato', sans-serif; */
+body {
+    /* background-image: url("../images/fireHydrant.jpeg") */
+}
+
+#wins{
+    color: green;
+}
+#losses{
+    color: red;
+}
+
+/* div {
+    border: 2px solid green;
+} */
