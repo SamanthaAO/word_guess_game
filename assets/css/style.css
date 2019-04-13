@@ -16,6 +16,10 @@ body {
     color: red;
 }
 
+.wordContainers{
+    font-size: 1.2rem;
+}
+
 /* div {
     border: 2px solid green;
 } */

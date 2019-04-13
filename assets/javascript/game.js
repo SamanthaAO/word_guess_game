@@ -3,12 +3,10 @@
 var dogs = [
     {
         name:"SHIBA", 
-        color: "blue",
         video: "<iframe width='560' height='315' src='https://www.youtube.com/embed/hhyS-E8GQbo?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
     {
         name:"HUSKY",
-        color: "red",
         video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/lxm_2s--q3A?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
     {
@@ -20,7 +18,7 @@ var dogs = [
         video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/VD2GUDpwuvM?start=18?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
     {
-        name:"CHIHWAHUA",
+        name:"CHIHUAHUA",
         video:"<iframe width='560' height='315' src='https://www.youtube.com/embed/jjOc_8Kp6YI?start=9?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
     },
     {
@@ -53,57 +51,67 @@ var dogs = [
 var turns = 3;
 var wins = 0;
 var losses = 0;
-var dogNames = [];
 
+var dogNames = dogs.map((dog)=>dog.name);
+
+function updateScore(){
 document.querySelector('#wins').innerHTML = wins;
 document.querySelector('#losses').innerHTML = losses;
 document.querySelector('#turns').innerHTML = turns;
+};
 
-function listDogs(names) {
-    
-    for (let i=0; i<names.length; i++){
-        dogNames.push(names[i].name);
-    }
-    console.log(dogNames);
-}
-
-listDogs(dogs);
 
 //selects initial random word to be guessed
-var randomNumber = Math.floor(Math.random()*dogNames.length);
+var randomNumber = 0;
 
 //make it a function here so you get the initial random word choice!!!!!
 
 
-
-
-
-var wordChoice = dogNames[randomNumber];
-
-console.log(wordChoice);
-console.log(dogs[randomNumber].video);
+var wordChoice = '';
 
 //computer counts letters in the string and displays blanks for every letter in word
 
 var blankWord = [];
 
-for(var j=0;j<wordChoice.length; j++){
-    blankWord.push(" _ ")
-    };
-
-document.getElementById('blankWord').textContent = blankWord.join(""); 
-//want to display it without commas
-console.log(blankWord);
-
 
 //store every letter in word in an array
 
-var wordLetters = wordChoice.split('');
-console.log(wordLetters);
+var wordLetters = [];
 
 var incorrectGuesses = [];
+var correctGuesses = [];
 var correctLetterTally = 0;
 var userGuess;
+
+randomNumber = Math.floor(Math.random()*dogNames.length);
+
+function resetGame(){
+    //reset game
+    while (correctGuesses.indexOf(randomNumber)>=0) {
+        randomNumber = Math.floor(Math.random()*dogNames.length);
+      }
+    
+    wordChoice = dogNames[randomNumber];
+        console.log(wordChoice);
+    
+    wordLetters.length = 0;
+    wordLetters = wordChoice.split('');
+
+    blankWord.length = 0;
+
+        for(var j=0;j<wordChoice.length; j++){
+        blankWord.push(" _ ")
+        };
+    document.getElementById('blankWord').textContent = blankWord.join(""); 
+    incorrectGuesses.length = 0;
+    document.getElementById('incorrectGuesses').textContent = incorrectGuesses;
+
+    correctLetterTally = 0;
+    turns=3;
+
+    updateScore();
+}
+resetGame();
 
 //player choses letter 
     document.onkeyup = function(){
@@ -130,7 +138,7 @@ var userGuess;
         if(wordLetters.includes(userGuess)=== false && incorrectGuesses.includes(userGuess)===false) {
             incorrectGuesses.push(userGuess);
             console.log(incorrectGuesses);
-            document.querySelector('#incorrectGuesses').innerHTML = incorrectGuesses;
+            document.getElementById('incorrectGuesses').textContent = incorrectGuesses;
                 // turns decreases by 1
                 turns--;
                 document.querySelector('#turns').innerHTML = turns;
@@ -138,57 +146,22 @@ var userGuess;
         //if you win
         if(correctLetterTally === wordLetters.length){
             wins++;
-            document.querySelector('#wins').innerHTML = wins;
-
+            correctGuesses.push(randomNumber);
+            
             //insert changing picture and such here!!!!!!
             document.getElementById('video').innerHTML = dogs[randomNumber].video; 
 
-                //reset game
-                randomNumber = Math.floor(Math.random()*dogNames.length);
-                wordChoice = dogNames[randomNumber];
-                    console.log(wordChoice);
-
-                wordLetters = wordChoice.split('');
-
-                blankWord.length = 0;
-
-                    for(var j=0;j<wordChoice.length; j++){
-                    blankWord.push(" _ ")
-                    };
-                document.getElementById('blankWord').textContent = blankWord.join(""); 
-                incorrectGuesses.length = 0;
-
-                correctLetterTally = 0;
-                turns=8;
-                
+            //reset game
+            resetGame();
         }
-
+        
         //if you lose
-        if(turns <= 0){
+        else if(turns <= 0){
             losses++;
-            document.querySelector('#losses').innerHTML = losses;
-                //reset game
-                randomNumber = Math.floor(Math.random()*dogs.length);
-                wordChoice = dogNames[randomNumber];
-                    console.log(wordChoice);
-
-                wordLetters = wordChoice.split('');
-
-                blankWord.length = 0;
-
-                    for(var i=0;i<wordChoice.length; i++){
-                    blankWord.push(" _ ")
-                    };
-
-                document.getElementById('blankWord').textContent = blankWord.join(""); 
-                
-                incorrectGuesses.length = 0;
-                document.querySelector('#incorrectGuesses').innerHTML = incorrectGuesses;
-                
-                correctLetterTally = 0;
-                turns=3;
-                //insert sad image for losing
+            //reset game
+            resetGame();
         }
+        
         
     }
 
